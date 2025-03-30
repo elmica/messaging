@@ -21,13 +21,14 @@ pub fn mqtt_handler(
         loop {
             // Check for either MQTT event or a message to publish
             if let Some(Ok(notification)) = connection.iter().next() {
-    match notification {
-        Event::Incoming(Packet::Publish(publish)) => {
-            let msg = String::from_utf8_lossy(&publish.payload).to_string();
-            let _ = outbound_tx.send(msg);
+
+        match notification {
+            Event::Incoming(Packet::Publish(publish)) => {
+                let msg = String::from_utf8_lossy(&publish.payload).to_string();
+                let _ = outbound_tx.send(msg);
+            }
+            _ => {}
         }
-        _ => {}
-    }
 }
 
             // Check if there's a message to publish

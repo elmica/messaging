@@ -1,4 +1,4 @@
- use printer_conn::mqtt_handler;
+ use messaging::mqtt_handler;
 
 fn main() {
     let (to_main_tx, to_main_rx) = std::sync::mpsc::channel(); // Incoming messages from MQTT
